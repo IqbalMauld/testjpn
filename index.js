@@ -63,24 +63,44 @@ const questions = [
     if (selected === correct) {
       btn.style.background = "rgb(2, 169, 2)";
       score++;
+      current++;
+      if (current < quizData.length) {
+        setTimeout(()=>{
+            loadQuestion();
+        },600)
+      } else {
+        setTimeout(() => {
+            showResult();
+        }, 600);
+      }
     } else {
       btn.style.background = "salmon";
       buttons.forEach(b => {
         if (b.textContent === correct) b.style.background = "lightgreen";
       });
+      current++;
+      if (current < quizData.length) {
+        setTimeout(()=>{
+            loadQuestion();
+        },600)
+      } else {
+        setTimeout(() => {
+            showResult();
+        }, 600);
+      }
     }
 
-    document.getElementById("nextBtn").style.display = "block";
+    // document.getElementById("nextBtn").style.display = "block";
   }
 
-  document.getElementById("nextBtn").onclick = () => {
-    current++;
-    if (current < quizData.length) {
-      loadQuestion();
-    } else {
-      showResult();
-    }
-  };
+//   document.getElementById("nextBtn").onclick = () => {
+//     current++;
+//     if (current < quizData.length) {
+//       loadQuestion();
+//     } else {
+//       showResult();
+//     }
+//   };
 
   function showResult() {
     document.getElementById("quiz").style.display = "none";
